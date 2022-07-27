@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 public class MonthlyReports {
-    public static HashMap<String, ArrayList<MonthlyRecord>> monthlyReports;
+    public  HashMap<String, ArrayList<MonthlyRecord>> monthlyReports;
 
     public MonthlyReports() {
         monthlyReports = new HashMap<>();
 
     }
 
-    public static void addMonthlyReports(String name, ArrayList<MonthlyRecord> Data) {
+    public  void addMonthlyReports(String name, ArrayList<MonthlyRecord> Data) {
         monthlyReports.put(name, Data);
     }
 
-    public static void printReport() {
+    public  void printReport() {
         for (String monthName : monthlyReports.keySet()) {
             System.out.println(monthName);
             for (MonthlyRecord record : monthlyReports.get(monthName)) {
@@ -20,32 +20,7 @@ public class MonthlyReports {
             }
         }
     }
-
-    public static double totalIncome(String name) {
-        double sum = 0;
-
-        for (MonthlyRecord monthlyRecord : monthlyReports.get(name)) {
-            if (!(monthlyRecord.isExpense)) {
-                sum += monthlyRecord.sumOfOne * monthlyRecord.quantity;
-            }
-        }
-
-        return sum;
-    }
-
-    public static double totalExpense(String name) {
-        double sum = 0;
-
-        for (MonthlyRecord monthlyRecord : monthlyReports.get(name)) {
-            if (monthlyRecord.isExpense) {
-                sum += monthlyRecord.sumOfOne * monthlyRecord.quantity;
-            }
-        }
-
-        return sum;
-    }
-
-    public static void givInfo() {
+    public  void givInfo() {
 
         for (String monthName : monthlyReports.keySet()) {
             System.out.println(monthName);
@@ -70,7 +45,6 @@ public class MonthlyReports {
             System.out.println("Самая большая трата: "+maxExpenseName+" - "+maxIncome);
         }
     }
-
 }
 
 

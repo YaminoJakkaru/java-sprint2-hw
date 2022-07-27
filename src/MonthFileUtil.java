@@ -1,14 +1,15 @@
+import java.util.ArrayList;
 
 public class MonthFileUtil {
 
-    public static void constructReport(String fileNames) {
+    public ArrayList<MonthlyRecord>  constructReport(String fileNames) {
         String[]months = fileNames.split(",");
         for (String month : months) {
             Reader reader = new Reader();
             MonthlyData data = new MonthlyData();
             String contentOfFile = reader.readFileContentsOrNull("resources/m." + month + ".csv");
             if (contentOfFile == null) {
-                return;
+                return null;
             }
             String[] lines = contentOfFile.split(System.lineSeparator());
 
@@ -26,8 +27,9 @@ public class MonthFileUtil {
             }
 
 
-            MonthlyReports.addMonthlyReports(month, data.monthlyData);
+            return data.monthlyData;
 
         }
+        return null;
     }
 }

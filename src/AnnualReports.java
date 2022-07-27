@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 public class AnnualReports {
-    public static HashMap<String,ArrayList<AnnualRecord>>annualReports;
+     public   HashMap<String,ArrayList<AnnualRecord>>annualReports;
 
     public AnnualReports(){
         annualReports=new HashMap<>();
 
     }
 
-    public static void addAnnualReports(String name,ArrayList <AnnualRecord>data){
+    public  void addAnnualReports(String name, ArrayList<AnnualRecord> data){
         annualReports.put(name,data);
     }
-    public static void printReport(){
+    public  void printReport(){
         for ( String annualName:  annualReports.keySet()){
             System.out.println(annualName);
             for (AnnualRecord record: annualReports.get(annualName)){
@@ -19,31 +19,9 @@ public class AnnualReports {
             }
         }
     }
-    public static double giveExpenseData(String month, String year) {
-        double monthlyExpense = 0;
 
 
-        for (AnnualRecord annualRecord :  annualReports.get(year)) {
-            if (month.equals(annualRecord.month) && annualRecord.isExpense) {
-                monthlyExpense = annualRecord.amount;
-
-            }
-
-        }
-        return monthlyExpense;
-    }
-    public static double giveIncomeData(String month, String year) {
-
-        double monthlyIncome = 0;
-
-        for (AnnualRecord annualRecord : annualReports.get(year)) {
-            if (month.equals(annualRecord.month) && !annualRecord.isExpense) {
-                monthlyIncome = annualRecord.amount;
-            }
-        }
-        return monthlyIncome;
-    }
-    public static void giveInfo(String annualName){
+    public void giveInfo(String annualName){
        if(!annualReports.containsKey(annualName)){
            System.out.println("Нет отчета за этот год");
             return;
@@ -55,7 +33,7 @@ public class AnnualReports {
 
 
     }
-    public static double averageIncome(ArrayList<AnnualRecord> annualReports ){
+    public  double averageIncome(ArrayList<AnnualRecord> annualReports ){
         double totalIncome=0;
         int month=0;
         for (AnnualRecord reports: annualReports){
@@ -67,7 +45,7 @@ public class AnnualReports {
         }
         return totalIncome/month;
     }
-    public static double averageExpense(ArrayList<AnnualRecord> annualReports ){
+    public  double averageExpense(ArrayList<AnnualRecord> annualReports ){
         double totalExpense=0;
         int month=0;
         for (AnnualRecord reports: annualReports){
@@ -79,7 +57,7 @@ public class AnnualReports {
         }
         return totalExpense/month;
     }
-    public static void monthlyProfits(ArrayList<AnnualRecord> annualReports) {
+    public  void monthlyProfits(ArrayList<AnnualRecord> annualReports) {
         double expense = 0;
         double income = 0;
         String month = null;

@@ -1,28 +1,43 @@
+import java.io.File;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MonthlyReports monthlyReports= new MonthlyReports();
         AnnualReports annualReports= new AnnualReports();
         CheckingReports checkingReports= new CheckingReports();
+        AnnualFileUtil annualFileUtil= new AnnualFileUtil();
+        MonthFileUtil monthFileUtil= new MonthFileUtil();
+        File dir = new File("resources");
+        String[] files = dir.list();
         printMenu();
         int userInput = scanner.nextInt();
         while (true) {
             switch (userInput) {
                 case 1: {
-                    MonthFileUtil.constructReport("202101,202102,202103");
+                    for (String file: files) {
+                        if(file.split("\\.")[0].equals("m")) {
+                            monthlyReports.addMonthlyReports((file.split("\\.")[1]), monthFileUtil.constructReport((file.split("\\.")[1])));
+                        }
+                    }
+
 
                     monthlyReports.printReport();
                     break;
                 }
                 case 2: {
+                    for (String file: files) {
+                        if(file.split("\\.")[0].equals("y")) {
+                            annualReports.addAnnualReports((file.split("\\.")[1]),annualFileUtil.constructReport((file.split("\\.")[1])));
+                        }
+                    }
 
-                    AnnualFileUtil.constructReport("2021");
                     annualReports.printReport();
                     break;
                 }
                 case 3: {
-                   checkingReports.checkReports();
+                   checkingReports.checkReports(annualReports.annualReports,monthlyReports.monthlyReports);
                     break;
                 }
                 case 4:{

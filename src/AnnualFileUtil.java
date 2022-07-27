@@ -1,17 +1,14 @@
-public class AnnualFileUtil {
-    public static void constructReport(String fileNames) {
+import java.util.ArrayList;
 
-
+public class AnnualFileUtil  {
+    public ArrayList<AnnualRecord> constructReport (String fileNames) {
         Reader reader = new Reader();
         AnnualData data= new AnnualData();
         String contentOfFile = reader.readFileContentsOrNull("resources/y."+fileNames+".csv");
         if (contentOfFile==null){
-            return;
+            return null;
         }
         String[] lines = contentOfFile.split(System.lineSeparator());
-
-
-
         for (int i = 1; i < lines.length; i++) {
             String[] lineContents = lines[i].split(",");
 
@@ -23,9 +20,7 @@ public class AnnualFileUtil {
 
         }
 
-
-        AnnualReports.addAnnualReports(fileNames,data.annualData);
-
+        return  data.annualData;
     }
 }
 
